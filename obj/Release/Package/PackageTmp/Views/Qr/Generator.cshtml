@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Generator";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col text-center">
+                    <h2>Qr Kod Oluşturma</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-12 mb-3">
+                    <label for="formcontrol1" class="form-label">Kod Adı</label>
+                    <input type="text" name="code" class="form-control" id="formcontrol1" placeholder="">
+                </div>
+                <div class="col-12 mb-3 text-right">
+                    <button type="submit" class="btn btn-outline-success" id="btnAdd" style="width:100px">Oluştur</button>
+                </div>
+                <div class="col-12 mb-5 text-center">
+                    @if (ViewBag.qrCode != null)
+                    {
+                        <img src="@ViewBag.qrCode" alt="@ViewBag.code" width="400px" height="400px"/>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

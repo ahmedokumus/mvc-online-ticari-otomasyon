@@ -1,0 +1,101 @@
+﻿
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-chart-pie mr-1"></i>
+            Grafikler
+        </h3>
+        <div class="card-tools">
+            <ul class="nav nav-pills ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link active"
+                       href="#revenue-chart"
+                       data-toggle="tab">Area</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="#sales-chart"
+                       data-toggle="tab">Pie</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <div class="tab-content p-0">
+            <!-- Morris chart - Sales -->
+            <div class="chart tab-pane active"
+                 id="revenue-chart"
+                 style="position: relative; height: 300px">
+                <div id="chart_div" style="width: 700px; height: 300px;"></div>
+                @*<canvas id="revenue-chart-canvas"
+                    height="300"
+                    style="height: 300px"></canvas>*@
+            </div>
+            <div class="chart tab-pane"
+                 id="sales-chart"
+                 style="position: relative; height: 300px">
+                <div id="piechart_div" style="width: 350px; height: 800px;"></div>
+                @*<canvas id="sales-chart-canvas"
+                            height="300"
+                            style="height: 300px">
+                    </canvas>*@
+            </div>
+        </div>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script>
+        $(document).ready(function () {
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                contentType: "application/json",
+                url: '@Url.Action("VisualizeProductResult2", "Statistics")',
+                success: function (result) {
+                    google.charts.load('current', {
+                        'packages': ['corechart']
+                    });
+                    google.charts.setOnLoadCallback(function () {
+                        drawChart(result);
+                    });
+                }
+            });
+
+            function drawChart(result) {
+
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Name');
+                data.addColumn('number', 'Adet');
+                var dataArray = [];
+                $.each(result, function (i, obj) {
+                    dataArray.push([obj.ProductName, obj.Stock]);
+                });
+
+                data.addRows(dataArray);
+
+                var piechart_options = {
+                    title: 'Ürün-Stok Grafiği',
+                    width: 800,
+                    height: 350
+                };
+                var piechart = new google.visualization.PieChart(document
+                    .getElementById('piechart_div'));
+                piechart.draw(data, piechart_options);
+
+                var options = {
+                    title: 'Ürün-Stok Grafiği',
+                    hAxis: { title: 'Ürünler', titleTextStyle: { color: '#333' } },
+                    vAxis: { title: 'Adet', minValue: 0 }
+                };
+                var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+            }
+        });
+</script>

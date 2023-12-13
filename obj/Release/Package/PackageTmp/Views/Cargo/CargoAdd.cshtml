@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "CargoAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col text-center">
+                    <h2>Yeni Kargo Girişi</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="col-12 mb-3">
+                        <label for="formcontrol1" class="form-label">Takip Kodu</label>
+                        <input type="text" name="CargoDetailTrackingCode" value="@ViewBag.code" class="form-control" id="formcontrol1" readonly="readonly">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="formcontrol2" class="form-label">Gönderici</label>
+                        <select name="CargoDetailSender" class="form-control" id="formcontrol2">
+                            @foreach (var employee in (List<SelectListItem>)ViewBag.employees)
+                            {
+                                <option value="@employee.Value">@employee.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="formcontrol3" class="form-label">Alıcı</label>
+                        <select name="CargoDetailBuyer" class="form-control" id="formcontrol3">
+                            @foreach (var customer in (List<SelectListItem>)ViewBag.customers)
+                            {
+                                <option value="@customer.Value">@customer.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="formcontrol4" class="form-label">Açıklama</label>
+                        <textarea rows="5" name="CargoDetailDescription" class="form-control" id="formcontrol4"></textarea>
+                    </div>
+                    <div class="col-12 mb-3 text-right">
+                        <button type="submit" class="btn btn-outline-success" id="btnAdd" style="width:100px">Ekle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

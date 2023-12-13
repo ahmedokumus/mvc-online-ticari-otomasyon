@@ -1,0 +1,68 @@
+﻿@using MvcOnlineTicariOtomasyon.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<CargoDetail>
+
+@{
+    ViewBag.Title = "CargoList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <div class="row my-auto">
+                    <div class="col-4 text-left">
+                        <a href="@Url.Action("CargoAdd", "Cargo")" type="button" class="btn btn-info">Yeni Kargo Girişi</a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <h2>Kargo Listesi</h2>
+                    </div>
+                    <div class="col-4 text-right">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Gönderici</th>
+                                    <th>Alıcı</th>
+                                    <th>Takip Kodu</th>
+                                    <th>Tarih</th>
+                                    <th>Saat</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th>@item.CargoDetailId</th>
+                                        <td>@item.CargoDetailSender</td>
+                                        <td>@item.CargoDetailBuyer</td>
+                                        <td>@item.CargoDetailTrackingCode</td>
+                                        <td>@Convert.ToDateTime(item.Date).ToString("dd/MM/yyyy")</td>
+                                        <td>@Convert.ToDateTime(item.Date).ToString("t")</td>
+                                        <td><a href="@Url.Action("CargoDetail", "Cargo", new { trackingCode = item.CargoDetailTrackingCode })" class="btn btn-secondary btn-sm">Detaylar</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0 float-right">
+                    @Html.PagedListPager(Model, page => Url.Action("CargoList", new { page }), new PagedListRenderOptions
+                    {
+                        LiElementClasses = new List<string> { "page-link" }
+                    })
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,51 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.SalesMovement
+
+@{
+    ViewBag.Title = "SalesDetail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-4 text-start">
+                <a href="#" type="button" class="btn btn-secondary">Yazdır</a>
+            </div>
+            <div class="col-4 text-center">
+                <h2>Satış Detayı</h2>
+            </div>
+            <div class="col-4 text-end">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Ürün Adı</th>
+                            <th>Personel</th>
+                            <th>Müşteri</th>
+                            <th>Birim Fiyat</th>
+                            <th>Adet</th>
+                            <th>Toplam</th>
+                            <th>Tarih</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Model.SalesMovementId</td>
+                            <td>@Model.Product.ProductName</td>
+                            <td>@Model.Employee.EmployeeFirstName @Model.Employee.EmployeeLastName</td>
+                            <td>@Model.Customer.CustomerFirstName @Model.Customer.CustomerLastName</td>
+                            <td>@Model.Price</td>
+                            <td>@Model.Piece</td>
+                            <td>@Model.TotalPrice</td>
+                            <td>@Model.Date</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

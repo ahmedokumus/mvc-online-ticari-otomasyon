@@ -1,0 +1,69 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.SalesMovement
+
+@{
+    ViewBag.Title = "ProductSales";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <input type="hidden" name="ProductId" value="@ViewBag.productId"/>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col text-center">
+                    <h2>Satış Yapma</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <label for="formcontrol1" class="form-label">Satışı Yapılacak Ürün</label>
+                    <input type="text" name="Piece" class="form-control" id="formcontrol1" value="@ViewBag.productName" readonly="readonly">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol2" class="form-label">Satış Yapan Personel</label>
+                    <select name="EmployeeId" class="form-control" id="formcontrol2">
+                        @foreach (var employee in (List<SelectListItem>)ViewBag.employees)
+                        {
+                            <option value="@employee.Value">@employee.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol3" class="form-label">Alan Müşteri</label>
+                    <select name="CustomerId" class="form-control" id="formcontrol3">
+                        @foreach (var customer in (List<SelectListItem>)ViewBag.customers)
+                        {
+                            <option value="@customer.Value">@customer.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol5" class="form-label">Fiyat</label>
+                    <input type="text" name="Price" class="form-control" id="formcontrol5" value="@ViewBag.salesPrice" readonly="readonly" onkeyup="sum();">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol6" class="form-label">Adet</label>
+                    <input type="number" name="Piecee" min="0" max="@ViewBag.productStockCount" class="form-control" id="formcontrol6" placeholder="Adet girin" required="" onkeyup="sum();" onchange="sum();">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol7" class="form-label">Toplam Fiyat</label>
+                    <input type="text" name="TotalPrice" class="form-control" id="formcontrol7" readonly="readonly">
+                </div>
+                <div class="col-12 mb-3 text-right">
+                    <button type="submit" class="btn btn-outline-success">Satış Yap</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+<script>
+    function sum() {
+        var SalePrice = document.getElementById('formcontrol5').value;
+        var Piece = document.getElementById('formcontrol6').value;
+        var result = parseInt(SalePrice) * parseInt(Piece);
+        if (!isNaN(result)) {
+            document.getElementById('formcontrol7').value = result;
+        }
+    }
+</script>

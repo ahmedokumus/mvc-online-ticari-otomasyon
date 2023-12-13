@@ -1,0 +1,412 @@
+﻿
+@{
+    ViewBag.Title = "CardStatistics";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewBag.totalCustomer</h3>
+                        <p>Toplam Müşteri</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person"></i>
+                    </div>
+                    @*<a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>@ViewBag.totalProduct</h3>
+                        <p>Toplam Ürün</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    @*<a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewBag.totalEmployee</h3>
+                        <p>Toplam Personel</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person"></i>
+                    </div>
+                    @*<a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>@ViewBag.totalCategory</h3>
+                        <p>Toplam Kategori</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                    @*<a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>@ViewBag.totalStock</h3>
+                        <p>Toplam Stok</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    @*<a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewBag.totalBrand</h3>
+                        <p>Toplam Marka</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                    </div>
+                    @*<a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>@ViewBag.criticalLevel</h3>
+                        <p>Kritik Seviye</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                    @*<a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewBag.highestPricedProduct</h3>
+                        <p>En Yüksek Fiyatlı Ürün</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    @*<a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>@ViewBag.value1</h3>
+                        <p>Sayısı En Fazla Marka</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                    </div>
+                    @*<a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>@ViewBag.freezerCount</h3>
+                        <p>Buzdolabı Sayısı</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                    @*<a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewBag.laptopCount</h3>
+                        <p>Laptop Sayısı</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                    </div>
+                    @*<a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>@ViewBag.lowestPricedProduct</h3>
+                        <p>En Düşük Fiyatlı Ürün</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    @*<a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>@ViewBag.bestSellingProduct</h3>
+                        <p>En Çok Satan Ürün</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    @*<a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>@ViewBag.totalPrice</h3>
+                        <p>Toplam Kasa</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-cash"></i>
+                    </div>
+                    @*<a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>@ViewBag.todaySales</h3>
+                        <p>Bugünkü Satış</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    @*<a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>*@
+                </div>
+            </div>
+            <div class="col-lg-3 col-6">
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <h3>@ViewBag.todayTotalPrice</h3>
+                        <p>Bugünkü Toplam Kasa</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                    @*<a href="#" class="small-box-footer">
+                        More info <i class="fas fa-arrow-circle-right"></i>
+                    </a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<div class="container text-center mt-3">
+    <div class="row mb-2">
+        <div class="col">
+            <h2>İstatistikler</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body fs-2">@ViewBag.totalCustomer</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <span class="small text-white stretched-link">Toplam Müşteri</span>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+                <div class="card-body fs-2">@ViewBag.totalProduct</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <span class="small text-white stretched-link">Ürün Sayısı</span>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body fs-2">@ViewBag.totalEmployee</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <span class="small text-white stretched-link">Personel Sayısı</span>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body fs-2">@ViewBag.totalCategory</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <span class="small text-white stretched-link">Kategori Sayısı</span>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body fs-2">@ViewBag.totalStock</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <span class="small text-white stretched-link">Toplam Stok</span>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+                <div class="card-body fs-2">@ViewBag.totalBrand</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <span class="small text-white stretched-link">Marka Sayısı</span>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body fs-2">@ViewBag.criticalLevel</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <span class="small text-white stretched-link">Kritik Seviye</span>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body fs-2">@ViewBag.highestPricedProduct</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <span class="small text-white stretched-link">En Yüksek Fiyatlı Ürün</span>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body fs-2">@ViewBag.value1</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <span class="small text-white stretched-link">Sayısı en fazla Marka</span>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+                <div class="card-body fs-2">@ViewBag.freezerCount</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <span class="small text-white stretched-link">Buzdolabı Sayısı</span>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body fs-2">@ViewBag.laptopCount</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <span class="small text-white stretched-link">Laptop Sayısı</span>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body fs-2">@ViewBag.lowestPricedProduct</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <span class="small text-white stretched-link">En Düşük Fiyatlı Ürün</span>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body fs-2">@ViewBag.bestSellingProduct</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <span class="small text-white stretched-link">En Çok Satan Ürün</span>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+                <div class="card-body fs-2">@ViewBag.totalPrice</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <span class="small text-white stretched-link">Kasadaki Tutar</span>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body fs-2">@ViewBag.todaySales</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <span class="small text-white stretched-link">Bugünkü Satışlar</span>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body fs-2">@ViewBag.todayTotalPrice</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div class="small text-white"><i class="fas fa-angle-left"></i></div>
+                    <span class="small text-white stretched-link">Bugünkü Kasa</span>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@

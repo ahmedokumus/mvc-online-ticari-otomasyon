@@ -1,0 +1,672 @@
+﻿@using MvcOnlineTicariOtomasyon.Breadcrumb
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title | AdminLTE</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css" />
+    <!-- Ionicons -->
+    <link rel="stylesheet"
+          href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet"
+          href="~/AdminLTE-3.2.0/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" />
+    <!-- iCheck -->
+    <link rel="stylesheet"
+          href="~/AdminLTE-3.2.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css" />
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/AdminLTE-3.2.0/plugins/jqvmap/jqvmap.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/AdminLTE-3.2.0/dist/css/adminlte.min.css" />
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet"
+          href="~/AdminLTE-3.2.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/AdminLTE-3.2.0/plugins/daterangepicker/daterangepicker.css" />
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.css" />
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake"
+                 src="~/AdminLTE-3.2.0/dist/img/AdminLTELogo.png"
+                 alt="AdminLTELogo"
+                 height="60"
+                 width="60" />
+        </div>
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                </li>
+                @*<li class="nav-item d-none d-sm-inline-block">
+                        <a href="~/AdminLTE-3.2.0/index3.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href="#" class="nav-link">Contact</a>
+                    </li>*@
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Navbar Search -->
+                <li class="nav-item">
+                    <a class="nav-link"
+                       data-widget="navbar-search"
+                       href="#"
+                       role="button">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <div class="navbar-search-block">
+                        <form action="@{ if (ViewContext.RouteData.Values["Controller"].ToString() == "Product"){
+                                             @Url.Action("ProductList","Product")
+                                         }else if (ViewContext.RouteData.Values["Controller"].ToString() == "Cargo"){
+                                             @Url.Action("CargoList","Cargo")
+                                         }
+                                      }"
+                              method="get"
+                              class="form-inline">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control form-control-navbar"
+                                       type="search"
+                                       name="search"
+                                       placeholder="@{ if (ViewContext.RouteData.Values["Controller"].ToString() == "Product"){
+                                                           @Html.Raw("Aranacak Ürün Adı")
+                                                       }else if (ViewContext.RouteData.Values["Controller"].ToString() == "Cargo"){
+                                                           @Html.Raw("Kargo Takip Numarası")
+                                                       }
+                                                    }"
+                                       aria-label="Search" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-navbar" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                    <button class="btn btn-navbar"
+                                            type="button"
+                                            data-widget="navbar-search">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+
+                <!-- Messages Dropdown Menu -->
+                <!--<li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-comments"></i>
+                        <span class="badge badge-danger navbar-badge">3</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="#" class="dropdown-item">-->
+                <!-- Message Start -->
+                <!--<div class="media">
+                    <img src="~/AdminLTE-3.2.0/dist/img/user1-128x128.jpg"
+                         alt="User Avatar"
+                         class="img-size-50 mr-3 img-circle" />
+                    <div class="media-body">
+                        <h3 class="dropdown-item-title">
+                            Brad Diesel
+                            <span class="float-right text-sm text-danger">
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </h3>
+                        <p class="text-sm">Call me whenever you can...</p>
+                        <p class="text-sm text-muted">
+                            <i class="far fa-clock mr-1"></i> 4 Hours Ago
+                        </p>
+                    </div>
+                </div>-->
+                <!-- Message End -->
+                <!--</a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">-->
+                <!-- Message Start -->
+                <!--<div class="media">
+                    <img src="~/AdminLTE-3.2.0/dist/img/user8-128x128.jpg"
+                         alt="User Avatar"
+                         class="img-size-50 img-circle mr-3" />
+                    <div class="media-body">
+                        <h3 class="dropdown-item-title">
+                            John Pierce
+                            <span class="float-right text-sm text-muted">
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </h3>
+                        <p class="text-sm">I got your message bro</p>
+                        <p class="text-sm text-muted">
+                            <i class="far fa-clock mr-1"></i> 4 Hours Ago
+                        </p>
+                    </div>
+                </div>-->
+                <!-- Message End -->
+                <!--</a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">-->
+                <!-- Message Start -->
+                <!--<div class="media">
+                    <img src="~/AdminLTE-3.2.0/dist/img/user3-128x128.jpg"
+                         alt="User Avatar"
+                         class="img-size-50 img-circle mr-3" />
+                    <div class="media-body">
+                        <h3 class="dropdown-item-title">
+                            Nora Silvester
+                            <span class="float-right text-sm text-warning">
+                                <i class="fas fa-star"></i>
+                            </span>
+                        </h3>
+                        <p class="text-sm">The subject goes here</p>
+                        <p class="text-sm text-muted">
+                            <i class="far fa-clock mr-1"></i> 4 Hours Ago
+                        </p>
+                    </div>
+                </div>-->
+                <!-- Message End -->
+                <!--</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                    </div>
+                </li>-->
+                <!-- Notifications Dropdown Menu -->
+                <!--<li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-bell"></i>
+                        <span class="badge badge-warning navbar-badge">15</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-users mr-2"></i> 8 friend requests
+                            <span class="float-right text-muted text-sm">12 hours</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-file mr-2"></i> 3 new reports
+                            <span class="float-right text-muted text-sm">2 days</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"
+                       data-widget="control-sidebar"
+                       data-controlsidebar-slide="true"
+                       href="#"
+                       role="button">
+                        <i class="fas fa-th-large"></i>
+                    </a>
+                </li>-->
+
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="@Url.Action("CategoryList","Category")" class="brand-link">
+                <img src="~/AdminLTE-3.2.0/dist/img/AdminLTELogo.png"
+                     alt="AdminLTE Logo"
+                     class="brand-image img-circle elevation-3"
+                     style="opacity: 0.8" />
+                <span class="brand-text font-weight-light">Ticari Otomasyon</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="~/AdminLTE-3.2.0/dist/img/user2-160x160.jpg"
+                             class="img-circle elevation-2"
+                             alt="User Image" />
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Admin Adı</a>
+                    </div>
+                </div>
+
+                <!-- SidebarSearch Form -->
+                <div class="form-inline">
+                    <div class="input-group" data-widget="sidebar-search">
+                        <input class="form-control form-control-sidebar"
+                               type="search"
+                               placeholder="Search"
+                               aria-label="Search" />
+                        <div class="input-group-append">
+                            <button class="btn btn-sidebar">
+                                <i class="fas fa-search fa-fw"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column"
+                        data-widget="treeview"
+                        role="menu"
+                        data-accordion="false">
+                        <li class="nav-header">ADMİN</li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","Home")" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Ana Menü</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("CategoryList","Category")" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Kategori</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("ProductList","Product")" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Ürün</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("DepartmentList","Department")" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Departman</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("EmployeeList","Employee")" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Personel</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("CustomerList","Customer")" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Müşteri</p>
+                            </a>
+                        </li>
+                        <li class="nav-header">RAPOR & FATURA</li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("SalesList","Sales")" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Satış</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("InvoiceList","Invoice")" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Fatura</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("DynamicInvoiceList","DynamicInvoices")" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Dinamik Fatura</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>
+                                    İstatistikler
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("CardStatistics","Statistics")" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Cart İstatistik</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("SimpleStatistics","Statistics")" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Basit İstatistik</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            Grafikler
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Graphic1","Statistics")" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Grafik 1</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Graphic2","Statistics")" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Grafik 2</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Graphic3","Statistics")" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Grafik 3</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Graphic4","Statistics")" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Grafik 4</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Graphic5","Statistics")" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Grafik 5</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index","Gallery")" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Galeri</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("CargoList","Cargo")" class="nav-link">
+                                <i class="fas fa-box nav-icon"></i>
+                                <p>Kargo</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Generator","Qr")" class="nav-link">
+                                <i class="fas fa-qrcode"></i>
+                                <p>Qr Kod İşlemleri</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            @(Html.Raw(BreadCrumb.Display()))
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @RenderBody()
+        </div>
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/AdminLTE-3.2.0/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge("uibutton", $.ui.button);
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="~/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/AdminLTE-3.2.0/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/AdminLTE-3.2.0/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="~/AdminLTE-3.2.0/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="~/AdminLTE-3.2.0/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="~/AdminLTE-3.2.0/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="~/AdminLTE-3.2.0/plugins/moment/moment.min.js"></script>
+    <script src="~/AdminLTE-3.2.0/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/AdminLTE-3.2.0/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="~/AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/AdminLTE-3.2.0/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/AdminLTE-3.2.0/dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    @*<script src="~/AdminLTE-3.2.0/dist/js/demo.js"></script>*@
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="~/AdminLTE-3.2.0/dist/js/pages/dashboard.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+@*<!DOCTYPE html>
+
+    <html lang="tr">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>@ViewBag.Title - Ticari Otomasyon</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link href="~/AdminTemplate/css/styles.css" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/490c82fb0e.js" crossorigin="anonymous"></script>
+
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+     Navbar Brand
+    <a class="navbar-brand ps-3" href="@Url.Action("CategoryList", "Category")">Ticari Otomasyon</a>
+     Sidebar Toggle
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+     Navbar Search
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        <div class="input-group">
+            <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+            <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+        </div>
+    </form>
+     Navbar
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Activity Log</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Admin</div>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Category" ? "active" : "")" href="@Url.Action("CategoryList", "Category")">
+                                <div class="sb-nav-link-icon"><i class="fa-solid fa-layer-group"></i></div>
+                                Kategoriler
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Product" ? "active" : "")" href="@Url.Action("ProductList", "Product")">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Ürünler
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Department" ? "active" : "")" href="@Url.Action("DepartmentList", "Department")">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Departmanlar
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Customer" ? "active" : "")" href="@Url.Action("CustomerList", "Customer")">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Müşteriler
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Employee" ? "active" : "")" href="@Url.Action("EmployeeList", "Employee")">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Personeller
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Rapor & Faturalar</div>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Sales" ? "active" : "")" href="@Url.Action("SalesList", "Sales")">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Satışlar
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Invoice" ? "active" : "")" href="@Url.Action("InvoiceList", "Invoice")">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Faturalar
+                            </a>
+                            <a class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Statistics" ? "active" : "")" href="@Url.Action("Statistics", "Statistics")">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                İstatistikler
+                            </a>
+                            <a class="nav-link" href="@Url.Action("Index", "Gallery")">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Galeri
+                            </a>
+                            <a class="nav-link" href="@Url.Action("", "")">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Interface</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Layouts
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="~/AdminTemplate/layout-static.html">Static Navigation</a>
+                                    <a class="nav-link" href="~/AdminTemplate/layout-sidenav-light.html">Light Sidenav</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Pages
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                        Authentication
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="~/AdminTemplate/login.html">Login</a>
+                                            <a class="nav-link" href="~/AdminTemplate/register.html">Register</a>
+                                            <a class="nav-link" href="~/AdminTemplate/password.html">Forgot Password</a>
+                                        </nav>
+                                    </div>
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                        Error
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="~/AdminTemplate/401.html">401 Page</a>
+                                            <a class="nav-link" href="~/AdminTemplate/404.html">404 Page</a>
+                                            <a class="nav-link" href="~/AdminTemplate/500.html">500 Page</a>
+                                        </nav>
+                                    </div>
+                                </nav>
+                            </div>
+                            <div class="sb-sidenav-menu-heading">Addons</div>
+                            <a class="nav-link" href="~/AdminTemplate/charts.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Charts
+                            </a>
+                            <a class="nav-link" href="~/AdminTemplate/tables.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Tables
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Addons</div>
+                            <a class="nav-link" href="~/AdminTemplate/charts.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Charts
+                            </a>
+                            <a class="nav-link" href="~/AdminTemplate/tables.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Tables
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Addons</div>
+                            <a class="nav-link" href="~/AdminTemplate/charts.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Charts
+                            </a>
+                            <a class="nav-link" href="~/AdminTemplate/tables.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Tables
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        Start Bootstrap
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        @RenderBody()
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="~/AdminTemplate/js/scripts.js"></script>
+        <script src="~/AdminTemplate/assets/demo/chart-area-demo.js"></script>
+        <script src="~/AdminTemplate/assets/demo/chart-bar-demo.js"></script>
+    </body>
+    </html>*@

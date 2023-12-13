@@ -1,0 +1,78 @@
+﻿@using MvcOnlineTicariOtomasyon.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<Product>
+
+@{
+    ViewBag.Title = "ProductList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <div class="row my-auto">
+                    <div class="col-4 text-start">
+                        <a href="@Url.Action("ProductAdd")" type="button" class="btn btn-info">Ürün Ekle</a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <h2>Ürün Listesi</h2>
+                    </div>
+                    <div class="col-4 text-end">
+                    </div>
+                </div>
+            </div>
+            <div class="card-bod">
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    @*<th>Id</th>*@
+                                    <th>Ürün Adı</th>
+                                    <th>Kategori Adı</th>
+                                    <th>Markası</th>
+                                    @*<th class="text-center">Görseli</th>*@
+                                    <th>Stok</th>
+                                    <th>Alış Fiyatı</th>
+                                    <th>Satış Fiyatı</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        @*<th scope="row">@item.ProductId</th>*@
+                                        <td>@item.ProductName</td>
+                                        <td>@item.Category.CategoryName</td>
+                                        <td>@item.ProductBrand</td>
+                                        @*<td class="text-center">@item.ProductImage</td>*@
+                                        <td>@item.Stock</td>
+                                        <td>@item.PurchasePrice ₺</td>
+                                        <td>@item.SalePrice ₺</td>
+                                        <td><a href="@Url.Action("ProductDetail", "Product", new { id = item.ProductId })" class="btn btn-secondary btn-sm">Detaylar</a></td>
+                                        <td><a href="@Url.Action("ProductSales", "Product", new { id = item.ProductId })" class="btn btn-default bg-teal btn-sm">Satış Yap</a></td>
+                                        <td><a href="@Url.Action("ProductUpdate", "Product", new { id = item.ProductId })" class="btn btn-warning btn-sm">Güncelle</a></td>
+                                        <td><a href="@Url.Action("ProductRemove", "Product", new { id = item.ProductId })" class="btn btn-danger btn-sm">Sil</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0 float-right">
+                    @Html.PagedListPager(Model, page => Url.Action("ProductList", new { page }), new PagedListRenderOptions
+                    {
+                        LiElementClasses = new List<string> { "page-link" }
+                    })
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "EmployeeAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post" enctype="multipart/form-data">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col text-center">
+                    <h2>Personel Ekleme</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <label for="formcontrol1" class="form-label">Personel Adı</label>
+                    <input type="text" name="EmployeeFirstName" class="form-control" id="formcontrol1" placeholder="">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol2" class="form-label">Personel Soyadı</label>
+                    <input type="text" name="EmployeeLastName" class="form-control" id="formcontrol2" placeholder="">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol3" class="form-label">Personel Görsel</label>
+                    <input type="file" id="formcontrol3" class="form-control" name="EmployeeImage"/>
+                    @*<input type="text" name="EmployeeImage" class="form-control" id="formcontrol3" placeholder="">*@
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol4" class="form-label">Departman Adı</label>
+                    <select name="DepartmentId" class="form-control" id="formcontrol4">
+                        @foreach (var department in (List<SelectListItem>)ViewBag.departments)
+                        {
+                            <option value="@department.Value">@department.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-12 mb-3 text-center">
+                    <button type="submit" class="btn btn-outline-success">Ekle</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

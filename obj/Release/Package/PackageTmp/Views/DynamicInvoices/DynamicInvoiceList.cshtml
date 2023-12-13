@@ -1,0 +1,272 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.ClassForDynamicInvoice
+
+@{
+    ViewBag.Title = "DynamicInvoiceList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-default">
+            <div class="card-header bg-secondary">
+                <div class="row my-auto">
+                    <div class="col-4 text-left">
+                        <button type="button" class="btn btn-info" onclick="addNewOrder()">Yeni Fatura Girişi</button>
+                    </div>
+                    <div class="col-4 text-center">
+                        <h2>Dinamik Fatura Listesi</h2>
+                    </div>
+                    <div class="col-4 text-right">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <table class="table">
+                            @foreach (var item in Model.ValueInvoices)
+                            {
+                                <tr>
+                                    <td class="text-start">Vergi Dairesi : @item.TaxAdministration</td>
+                                    <td class="text-center">Teslim Eden : @item.DeliveryPerson</td>
+                                    <td class="text-center">Tarih : @item.Date.ToShortDateString()</td>
+                                    <td class="text-center">Saat : @item.Date.ToShortTimeString()</td>
+                                    <td class="text-right">Seri-Sıra no : @item.InvoiceSerialNumber-@item.InvoiceNumber</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Açıklama</th>
+                                                    <th>Adet</th>
+                                                    <th>Birim Fiyat</th>
+                                                    <th>Toplam Fiyat</th>
+                                                </tr>
+                                            </thead>
+                                            @{
+                                                decimal totalPrice = 0;
+                                            }
+                                            @foreach (var item2 in item.InvoiceItems)
+                                            {
+                                                <tr>
+                                                    <td>@item2.Description</td>
+                                                    <td>@item2.Piece</td>
+                                                    <td>@item2.UnitPrice ₺</td>
+                                                    <td>@item2.ItemsTotalPrice ₺</td>
+                                                </tr>
+                                                totalPrice = totalPrice + Convert.ToDecimal(item2.ItemsTotalPrice);
+                                            }
+                                            <tr class="text-right" style=" border-bottom-style: hidden; border-right-style: hidden; border-left-style: hidden; height: 70px">
+                                                <td colspan="4">
+                                                    <span><strong>Fatura Toplam Tutar : </strong> @totalPrice ₺</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    var mainTableElement = document.getElementById("mainTable");
+    mainTableElement.className = "table table-striped";
+</script>
+
+<div class="modal fade" id="newOrderModal">
+    <div class="modal-dialog modal-lg" style=" width: 900px !important;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-left"><h4>Yeni Fatura Girişi</h4></div>
+                        <div class="col text-right"><a href="#" class="close" data-dismiss="modal">&times;</a></div>
+                    </div>
+                </div>
+            </div>
+            <form method="post" id="NewOrderForm">
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row text-left">
+                            <div class="col">
+                                <h5 style="color:#ff6347">Fatura Detayları</h5>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label for="InvoiceSerialNumber" class="form-label">Seri No</label>
+                                <input type="text" name="InvoiceSerialNumber" class="form-control" placeholder="Seri Numarası" id="InvoiceSerialNumber">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="InvoiceNumber" class="form-label">Sıra No</label>
+                                <input type="text" name="InvoiceNumber" class="form-control" placeholder="Sıra Numarası" id="InvoiceNumber">
+                            </div>
+                        </div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label for="DeliveryPerson" class="form-label">Teslim Eden Personel</label>
+                                <select name="DeliveryPerson" class="form-control" id="DeliveryPerson">
+                                    @foreach (var employee in (List<SelectListItem>)ViewBag.employees)
+                                    {
+                                        <option value="@employee.Value">@employee.Text</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="DeliveryArea" class="form-label">Teslim Alan Müşteri</label>
+                                <select name="DeliveryArea" class="form-control" id="DeliveryArea">
+                                    @foreach (var customer in (List<SelectListItem>)ViewBag.customers)
+                                    {
+                                        <option value="@customer.Value">@customer.Text</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row g-3 mb-5">
+                            <div class="col-md-6">
+                                <label for="TaxAdministration" class="form-label">Vergi Dairesi</label>
+                                <input type="text" name="TaxAdministration" class="form-control" placeholder="Vergi Dairesi" id="TaxAdministration">
+                            </div>
+                            @*<div class="col-md-6">
+                                    <label for="TotalPrice" class="form-label">Toplam</label>
+                                    <input type="text" name="TotalPrice" class="form-control" placeholder="Toplam Tutar" id="TotalPrice">
+                                </div>*@
+                        </div>
+                        <div class="row text-left">
+                            <div class="col">
+                                <h5 style="color:#ff6347">Fatura Kalemleri</h5>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label for="Description" class="form-label">Açıklama</label>
+                                <input type="text" name="Description" class="form-control" placeholder="Ürün / Birim açıklamasını giriniz" id="Description">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="UnitPrice" class="form-label">Birim Fiyat</label>
+                                <input type="number" name="UnitPrice" class="form-control" placeholder="Birim Fiyat giriniz" id="UnitPrice">
+                            </div>
+                        </div>
+                        <div class="row g-3 mb-5">
+                            <div class="col-md-6">
+                                <label for="Piece" class="form-label">Adet</label>
+                                <input type="number" name="Piece" class="form-control" placeholder="Adet giriniz" id="Piece">
+                            </div>
+                            <div class="col-md-6 my-auto text-right pt-4">
+                                <a id="addToList" class="btn btn-primary">Listeye Ekle</a>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <table id="detailsTable" class="table">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th style="width:30%">Açıklama</th>
+                                        <th style="width:15%">Birim Fiyat</th>
+                                        <th style="width:20%">Adet</th>
+                                        <th style="width:25%">Toplam Tutar</th>
+                                        <th style="width:10%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                    <button id="saveInvoice" type="submit" class="btn btn-success">Faturayı Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        //Show Modal.
+        function addNewOrder() {
+            $("#newOrderModal").modal();
+        }
+        //Add Multiple Order.
+        $("#addToList").click(function (e) {
+            e.preventDefault();
+            if ($.trim($("#Description").val()) == "" || $.trim($("#UnitPrice").val()) == "" || $.trim($("#Piece").val()) == "") return;
+            var Description = $("#Description").val(),
+                UnitPrice = $("#UnitPrice").val(),
+                Piece = $("#Piece").val(),
+                detailsTableBody = $("#detailsTable tbody");
+            var Item = '<tr class="text-center"><td>' + Description + '</td><td>' + UnitPrice + '</td><td>' + Piece + '</td><td>' + (parseFloat(UnitPrice) * parseInt(Piece)) + '</td><td><a data-itemId="0" href="#" class="deleteItem btn btn-outline-danger btn-sm">Remove</a></td></tr>';
+            detailsTableBody.append(Item);
+            clearItem();
+        });
+        //After Add A New Order In The List, Clear Clean The Form For Add More Order.
+        function clearItem() {
+            $("#Description").val('');
+            $("#UnitPrice").val('');
+            $("#Piece").val('');
+        }
+        // After Add A New Order In The List, If You Want, You Can Remove It.
+        $(document).on('click', 'a.deleteItem', function (e) {
+            e.preventDefault();
+            var $self = $(this);
+            if ($(this).attr('data-itemId') == "0") {
+                $(this).parents('tr').css("background-color", "#ff6347").fadeOut(800, function () {
+                    $(this).remove();
+                });
+            }
+        });
+        //After Click Save Button Pass All Data View To Controller For Save Database
+        function saveInvoice(data) {
+            return $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: 'POST',
+                url: "/DynamicInvoices/InvoiceSave",
+                data: data,
+                success: function (result) {
+                    alert(result);
+                    location.reload();
+                },
+                error: function () {
+                    alert("Error!")
+                }
+            });
+        }
+        //Collect Multiple Order List For Pass To Controller
+        $("#saveInvoice").click(function (e) {
+            e.preventDefault();
+            var ınvoiceArr = [];
+            ınvoiceArr.length = 0;
+            $.each($("#detailsTable tbody tr"), function () {
+                ınvoiceArr.push({
+                    Description: $(this).find('td:eq(0)').html(),
+                    UnitPrice: $(this).find('td:eq(1)').html(),
+                    Piece: $(this).find('td:eq(2)').html(),
+                    ItemsTotalPrice: $(this).find('td:eq(3)').html()
+                });
+            });
+            var data = JSON.stringify({
+                InvoiceSerialNumber: $("#InvoiceSerialNumber").val(),
+                InvoiceNumber: $("#InvoiceNumber").val(),
+                DeliveryPerson: $("#DeliveryPerson").val(),
+                DeliveryArea: $("#DeliveryArea").val(),
+                TaxAdministration: $("#TaxAdministration").val(),
+                kalemler: ınvoiceArr
+                //TotalPrice: $("#TotalPrice").val(), =>SQL tarafında trigger kullandığımız için
+            });
+            $.when(saveInvoice(data)).then(function (response) {
+                console.log(response);
+            }).fail(function (err) {
+                console.log(err);
+            });
+        });
+    </script>
+}

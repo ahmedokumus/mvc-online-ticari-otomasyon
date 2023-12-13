@@ -1,0 +1,71 @@
+﻿@using MvcOnlineTicariOtomasyon.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<Employee>
+
+@{
+    ViewBag.Title = "EmployeeList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <div class="row my-auto">
+                    <div class="col-4 text-start">
+                        <a href="@Url.Action("EmployeeAdd")" type="button" class="btn btn-info">Personel Ekle</a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <h2>Personel Listesi</h2>
+                    </div>
+                    <div class="col-4 text-right">
+                        <a href="@Url.Action("EmployeeCardList")" type="button" class="btn bg-teal">Personel Kart Liste</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Adı Soyadı</th>
+                                    <th class="text-center">Görsel</th>
+                                    <th>Departman</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="my-auto">
+                                        <th scope="row">@item.EmployeeId</th>
+                                        <td>@item.EmployeeFirstName @item.EmployeeLastName</td>
+                                        <td class="text-center">
+                                            <img src="@item.EmployeeImage" height="50px" width="90px" alt="@item.EmployeeFirstName" />
+                                        </td>
+                                        <td>@item.Department.DepartmentName</td>
+                                        <td><a href="@Url.Action("DepartmentEmployeeSales","Department", new { id = item.EmployeeId })" class="btn btn-secondary btn-sm">Satışlar</a></td>
+                                        <td><a href="@Url.Action("EmployeeUpdate","Employee", new { id = item.EmployeeId })" class="btn btn-warning btn-sm">Güncelle</a></td>
+                                        <td><a href="@Url.Action("EmployeeRemove","Employee", new { id = item.EmployeeId })" class="btn btn-danger btn-sm">Sil</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0 float-right">
+                    @Html.PagedListPager(Model, page => Url.Action("EmployeeList", new { page }), new PagedListRenderOptions
+                    {
+                        LiElementClasses = new List<string> { "page-link" }
+                    })
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

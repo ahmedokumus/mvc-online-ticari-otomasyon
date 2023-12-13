@@ -1,0 +1,49 @@
+﻿@using MvcOnlineTicariOtomasyon.Models
+@model List<CargoTracking>
+
+@{
+    ViewBag.Title = "CargoDetail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-4 text-left">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active">Takip Numarası : @ViewBag.value</li>
+                </ol>
+            </div>
+            <div class="col-4 text-center">
+                <h2>Kargo Detay</h2>
+            </div>
+            <div class="col-4 text-right">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Açıklama</th>
+                            <th>Tarih</th>
+                            <th>Saat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.CargoTrackingId</th>
+                                <td>@item.CargoTrackingDescription</td>
+                                <td>@Convert.ToDateTime(item.Date).ToString("dd/MM/yyyy")</td>
+                                <td>@Convert.ToDateTime(item.Date).ToString("t")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

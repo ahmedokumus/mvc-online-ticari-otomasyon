@@ -1,0 +1,103 @@
+﻿@using MvcOnlineTicariOtomasyon.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<Department>
+
+@{
+    ViewBag.Title = "DepartmentList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <div class="row my-auto">
+                    <div class="col-4 text-start">
+                        <a href="@Url.Action("DepartmentAdd")" type="button" class="btn btn-info">Departman Ekle</a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <h2>Departman Listesi</h2>
+                    </div>
+                    <div class="col-4 text-end">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Departman Adı</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th scope="row">@item.DepartmentId</th>
+                                        <td>@item.DepartmentName</td>
+                                        <td class="text-end"><a href="@Url.Action("DepartmentDetail", "Department", new { id = item.DepartmentId })" class="btn btn-secondary btn-sm">Detaylar</a></td>
+                                        <td><a href="@Url.Action("DepartmentUpdate", "Department", new { id = item.DepartmentId })" class="btn btn-warning btn-sm">Güncelle</a></td>
+                                        <td class="text-start"><a href="@Url.Action("DepartmentRemove", "Department", new { id = item.DepartmentId })" class="btn btn-danger btn-sm">Sil</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0 float-right">
+                    @Html.PagedListPager(Model, page => Url.Action("DepartmentList", new { page }), new PagedListRenderOptions
+                    {
+                        LiElementClasses = new List<string> { "page-link" }
+                    })
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<div class="container text-center mt-3">
+        <div class="row mb-2">
+            <div class="col-4"></div>
+            <div class="col">
+                <h2>Departman Listesi</h2>
+            </div>
+            <div class="col-4 text-end">
+                <a href="@Url.Action("DepartmentAdd")" type="button" class="btn btn-info">Departman Ekle</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Departman Adı</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.DepartmentId</th>
+                            <td>@item.DepartmentName</td>
+                            <td class="text-end"><a href="@Url.Action("DepartmentDetail", "Department", new { id = item.DepartmentId })" class="btn btn-secondary btn-sm">Detaylar</a></td>
+                            <td><a href="@Url.Action("DepartmentUpdate", "Department", new { id = item.DepartmentId })" class="btn btn-warning btn-sm">Güncelle</a></td>
+                            <td class="text-start"><a href="@Url.Action("DepartmentRemove", "Department", new { id = item.DepartmentId })" class="btn btn-danger btn-sm">Sil</a></td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>*@

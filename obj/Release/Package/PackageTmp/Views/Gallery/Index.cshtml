@@ -1,0 +1,35 @@
+﻿@using MvcOnlineTicariOtomasyon.Models
+@model List<Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col text-center">
+                <h2>Galeri</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-sm-2">
+                                    <a href="#" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
+                                        <img src="@item.ProductImage" class="img-fluid mb-2" alt="@item.ProductName" />
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

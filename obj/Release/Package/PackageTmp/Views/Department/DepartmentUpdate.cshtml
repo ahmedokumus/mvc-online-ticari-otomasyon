@@ -1,0 +1,28 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Department
+
+@{
+    ViewBag.Title = "DepartmentUpdate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    @Html.HiddenFor(x => x.DepartmentId)
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row text-center">
+                <div class="col">
+                    <h2>Departman Güncelleme</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <label for="formcontrol1" class="form-label">Departman Adı</label>
+                    <input type="text" value="@Model.DepartmentName" name="DepartmentName" class="form-control" id="formcontrol1" placeholder="">
+                </div>
+                <div class="col-12 mt-1 text-center">
+                    <button type="submit" class="btn btn-outline-warning">Güncelle</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

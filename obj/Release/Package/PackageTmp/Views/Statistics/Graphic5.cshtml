@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "Graphic5";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<html lang="tr">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Google Chart in ASP.NET Core MVC 5</title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                contentType: "application/json",
+                url: '@Url.Action("VisualizeProductResult2", "Statistics")',
+                success: function (result) {
+                    google.charts.load('current', {
+                        'packages': ['corechart']
+                    });
+                    google.charts.setOnLoadCallback(function () {
+                        drawChart(result);
+                    });
+                }
+            });
+
+            function drawChart(result) {
+
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Name');
+                data.addColumn('number', 'Quantity');
+                var dataArray = [];
+                $.each(result, function (i, obj) {
+                    dataArray.push([obj.ProductName, obj.Stock]);
+                });
+
+                data.addRows(dataArray);
+
+                var piechart_options = {
+                    title: 'Ürün - Stok Grafiği',
+                    width: 900,
+                    height: 600,
+                    is3D: true,
+                };
+                var piechart = new google.visualization.PieChart(document
+                    .getElementById('piechart_div'));
+                piechart.draw(data, piechart_options);
+            }
+        });
+    </script>
+</head>
+<body>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col" style="text-align: -webkit-center;">
+                    <div id="piechart_div" style="width: 900px; height: 600px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.ClassForCascading1
+
+@{
+    ViewBag.Title = "Trial";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col text-center">
+                    <h2>Ürün Ekleme</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <label for="" class="form-label">Kategoriler</label>
+                    @Html.DropDownList("DrpCategory", Model.Categories, "---Kategori Seçin---", new { @class = "form-control" })
+                    @*<input type="text" name="ProductName" class="form-control" id="formcontrol1" placeholder="">*@
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="" class="form-label">Ürünler</label>
+                    @Html.DropDownList("DrpProduct", Model.Products, "---Ürün Seçin---", new { @class = "form-control" })
+                    @*<input type="text" name="ProductBrand" class="form-control" id="formcontrol3" placeholder="">*@
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+<script>
+    $(function () {
+        $('#DrpCategory').change(function () {
+            var id = $('#DrpCategory').val();
+            $.ajax({
+                url: '/Category/BringProduct',
+                data: { p: id },
+                type: "POST",
+                dataType: "Json",
+                success: function (data) {
+                    $('#DrpProduct').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        $('#DrpProduct').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                    }
+                }
+            });
+        });
+    });
+</script>

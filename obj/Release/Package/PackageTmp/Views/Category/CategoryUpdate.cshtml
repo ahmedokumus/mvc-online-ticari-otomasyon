@@ -1,0 +1,50 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Category
+
+@{
+    ViewBag.Title = "CategoryUpdate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    @Html.HiddenFor(x => x.CategoryId)
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col text-center">
+                    <h2>Kategori Güncelleme</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group col-12 mb-3">
+                        <label for="formcontrol1" class="form-label">Kategori Adı</label>
+                        <input type="text" value="@Model.CategoryName" name="CategoryName" class="form-control" id="formcontrol1" placeholder="">
+                    </div>
+                    <div class="col-12 mb-3 text-center">
+                        <button type="submit" class="btn btn-outline-warning">Güncelle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+@*<div class="container mt-3">
+        <div class="row text-center mb-2">
+            <div class="col">
+                <h2>Kategori Güncelleme</h2>
+            </div>
+        </div>
+        <div class="row text-start">
+            <form class="form-group" method="post">
+                @Html.HiddenFor(x => x.CategoryId)
+                <div class="col-12 mb-3">
+                    <label for="formcontrol1" class="form-label">Kategori Adı</label>
+                    <input type="text" value="@Model.CategoryName" name="CategoryName" class="form-control" id="formcontrol1" placeholder="">
+                </div>
+                <div class="col-12 mt-1 text-end">
+                    <button type="submit" class="btn btn-outline-warning">Güncelle</button>
+                </div>
+            </form>
+        </div>
+    </div>*@

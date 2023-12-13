@@ -1,0 +1,115 @@
+﻿@using MvcOnlineTicariOtomasyon.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<Customer>
+
+@{
+    ViewBag.Title = "CustomerList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <div class="row my-auto">
+                    <div class="col-4 text-start">
+                        <a href="@Url.Action("CustomerAdd")" type="button" class="btn btn-info">Müşteri Ekle</a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <h2>Müşteri Listesi</h2>
+                    </div>
+                    <div class="col-4 my-auto text-end">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Adı</th>
+                                    <th>Soyadı</th>
+                                    <th>Şehir</th>
+                                    <th>Mail</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th scope="row">@item.CustomerId</th>
+                                        <td>@item.CustomerFirstName</td>
+                                        <td>@item.CustomerLastName</td>
+                                        <td>@item.CustomerCity</td>
+                                        <td>@item.Email</td>
+                                        <td><a href="@Url.Action("CustomerPurchaseHistory","Customer", new { id = item.CustomerId })" class="btn btn-secondary btn-sm">Satın Alma Geçmişi</a></td>
+                                        <td><a href="@Url.Action("CustomerUpdate","Customer", new { id = item.CustomerId })" class="btn btn-warning btn-sm">Güncelle</a></td>
+                                        <td><a href="@Url.Action("CustomerRemove","Customer", new { id = item.CustomerId })" class="btn btn-danger btn-sm">Sil</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0 float-right">
+                    @Html.PagedListPager(Model, page => Url.Action("CustomerList", new { page }), new PagedListRenderOptions
+                    {
+                        LiElementClasses = new List<string> { "page-link" }
+                    })
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<div class="container text-center mt-3">
+        <div class="row mb-2">
+            <div class="col-4"></div>
+            <div class="col">
+                <h2>Müşteri Listesi</h2>
+            </div>
+            <div class="col-4 text-end">
+                <a href="@Url.Action("CustomerAdd")" type="button" class="btn btn-info">Müşteri Ekle</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Adı</th>
+                            <th>Soyadı</th>
+                            <th>Şehir</th>
+                            <th>Mail</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.CustomerId</th>
+                                <td>@item.CustomerFirstName</td>
+                                <td>@item.CustomerLastName</td>
+                                <td>@item.CustomerCity</td>
+                                <td>@item.CustomerMail</td>
+                                <td><a href="@Url.Action("CustomerPurchaseHistory","Customer", new { id = item.CustomerId })" class="btn btn-secondary btn-sm">Satın Alma Geçmişi</a></td>
+                                <td><a href="@Url.Action("CustomerUpdate","Customer", new { id = item.CustomerId })" class="btn btn-warning btn-sm">Güncelle</a></td>
+                                <td><a href="@Url.Action("CustomerRemove","Customer", new { id = item.CustomerId })" class="btn btn-danger btn-sm">Sil</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>*@

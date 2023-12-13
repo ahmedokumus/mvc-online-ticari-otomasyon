@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="card-body">
+    <p class="login-box-msg" id="displayText" style="@ViewBag.style">@ViewBag.error @ViewBag.userInformationError</p>
+
+    <form method="post">
+        <div class="input-group mb-3">
+            <input type="text" name="Email" class="form-control" placeholder="E posta">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                </div>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <input type="password" name="Password" class="form-control" placeholder="Şifre">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                @*<div class="icheck-primary">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">
+                            Beni Hatırla
+                        </label>
+                    </div>*@
+                <div class="icheck-primary">
+                    <input type="radio" name="radioGroup" value="employee" id="employee">
+                    <label for="employee">
+                        Personel Girişi
+                    </label>
+                </div>
+                <div class="icheck-primary">
+                    <input type="radio" name="radioGroup" value="customer" id="customer">
+                    <label for="customer">
+                        Müşteri Girişi
+                    </label>
+                </div>
+            </div>
+            <div class="col-4">
+                <button type="submit" class="btn btn-primary btn-block">Giriş Yap</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                
+            </div>
+        </div>
+    </form>
+
+    <div class="social-auth-links text-center mt-2 mb-3">
+        <a href="#" class="btn btn-block btn-primary">
+            <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+        </a>
+        <a href="#" class="btn btn-block btn-danger">
+            <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+        </a>
+    </div>
+    @*<p class="mb-1">
+        <a href="~/AdminLTE-3.2.0/pages/examples/forgot-password.html">Şifremi unuttum</a>
+    </p>*@
+    <p class="mb-0 text-right">
+        <a href="@Url.Action("CustomerRegister","Login")" class="text-center">Yeni Müşteri Kaydı</a>
+    </p>
+</div>
+
+<script>
+    // Radio butonlarını seç
+    const employee = document.getElementById('employee');
+    const customer = document.getElementById('customer');
+
+    // Yazıyı gösterecek olan paragraf elementini seç
+    const displayText = document.getElementById('displayText');
+
+    // Radio butonların durumu değiştiğinde çağırılacak fonksiyonu tanımla
+    function onRadioChange() {
+        // Hangi radio butonunun seçildiğini kontrol et
+        if (employee.checked) {
+            displayText.textContent = "Personel Girişi";
+            displayText.style = ""
+        } else if (customer.checked) {
+            displayText.textContent = "Müşteri Girişi";
+            displayText.style = ""
+        } else {
+            displayText.textContent = "Giriş Türü Seçilmedi";
+            displayText.style = "color: red"
+        }
+    }
+
+    // Radio butonların durumu değiştiğinde onRadioChange fonksiyonunu çağır
+    employee.addEventListener('change', onRadioChange);
+
+    customer.addEventListener('change', onRadioChange);
+
+    // Sayfa yüklendiğinde yazıyı başlangıç durumuna göre ayarla
+    // onRadioChange();
+</script>

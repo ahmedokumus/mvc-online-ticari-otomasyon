@@ -1,0 +1,77 @@
+﻿@model IEnumerable<MvcOnlineTicariOtomasyon.Models.ClassGroup>
+
+<div class="card card-success">
+    <div class="card-header">
+        <h3 class="card-title">Müşteri Şehir Tablosu</h3>
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Şehir</th>
+                    <th>Progress</th>
+                    <th style="width: 40px">Adet</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int rowNumber = 0;}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@{rowNumber++;} @rowNumber</td>
+                        <td>@item.City</td>
+                        <td>
+                            @{
+                                if (item.Number == 1)
+                                {
+                                    <div class="progress progress-xs">
+                                        <div class="progress-bar bg-danger" style="width: 25%"></div>
+                                    </div>
+                                }
+                                else if (item.Number == 2)
+                                {
+                                    <div class="progress progress-xs">
+                                        <div class="progress-bar bg-warning" style="width: 50%"></div>
+                                    </div>
+                                }
+                                else if (item.Number == 3)
+                                {
+                                    <div class="progress progress-xs">
+                                        <div class="progress-bar bg-primary" style="width: 75%"></div>
+                                    </div>
+                                }
+                                else if (item.Number >= 4)
+                                {
+                                    <div class="progress progress-xs">
+                                        <div class="progress-bar bg-success" style="width: 100%"></div>
+                                    </div>
+                                }
+                            }
+                        </td>
+                        <td>
+                            @{
+                                if (item.Number == 1)
+                                {
+                                    <span class="badge bg-danger">@item.Number</span>
+                                }
+                                else if (item.Number == 2)
+                                {
+                                    <span class="badge bg-warning">@item.Number</span>
+                                }
+                                else if (item.Number == 3)
+                                {
+                                    <span class="badge bg-primary">@item.Number</span>
+                                }
+                                else if (item.Number >= 4)
+                                {
+                                    <span class="badge bg-success">@item.Number</span>
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+﻿@using MvcOnlineTicariOtomasyon.Breadcrumb
+
+@{
+    ViewBag.Title = "CustomerAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col text-center">
+                    <h2>Müşteri Ekleme</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <label for="formcontrol1" class="form-label">Müşteri Adı</label>
+                    <input type="text" name="CustomerFirstName" class="form-control" id="formcontrol1" placeholder="">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol2" class="form-label">Müşteri Soyadı</label>
+                    <input type="text" name="CustomerLastName" class="form-control" id="formcontrol2" placeholder="">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol3" class="form-label">Müşteri Şehiri</label>
+                    <input type="text" name="CustomerCity" class="form-control" id="formcontrol3" placeholder="">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol4" class="form-label">Müşteri E-posta Adresi</label>
+                    <input type="text" name="CustomerMail" class="form-control" id="formcontrol4" placeholder="">
+                </div>
+                <div class="col-12 mb-3 text-center">
+                    <button type="submit" class="btn btn-outline-success">Ekle</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+@*<div class="container mt-3">
+        <div class="row text-center mb-2">
+            <div class="col">
+                <h2>Müşteri Ekleme</h2>
+            </div>
+        </div>
+        <div class="row text-start">
+            <form class="form-group" method="post">
+                <div class="col-12 mb-3">
+                    <label for="formcontrol1" class="form-label">Müşteri Adı</label>
+                    <input type="text" name="CustomerFirstName" class="form-control" id="formcontrol1" placeholder="">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol2" class="form-label">Müşteri Soyadı</label>
+                    <input type="text" name="CustomerLastName" class="form-control" id="formcontrol2" placeholder="">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol3" class="form-label">Müşteri Şehiri</label>
+                    <input type="text" name="CustomerCity" class="form-control" id="formcontrol3" placeholder="">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol4" class="form-label">Müşteri E-posta Adresi</label>
+                    <input type="text" name="CustomerMail" class="form-control" id="formcontrol4" placeholder="">
+                </div>
+                <div class="col-12 mb-3 text-end">
+                    <button type="submit" class="btn btn-outline-success">Ekle</button>
+                </div>
+            </form>
+        </div>
+    </div>*@

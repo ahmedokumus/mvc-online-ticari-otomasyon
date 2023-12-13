@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "InvoiceItemsAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col text-center">
+                    <h2>Fatura Kalem Girişi</h2>
+                </div>
+            </div>
+            <div class="row">
+                <form class="form-group" method="post">
+                    <div class="col-12 mb-3">
+                        <label for="formcontrol1" class="form-label">Açıklama</label>
+                        <select name="Description" class="form-control" id="formcontrol1">
+                            @foreach (var product in (List<SelectListItem>)ViewBag.products)
+                            {
+                                <option value="@product.Value">@product.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="formcontrol2" class="form-label">Birim Fiyat</label>
+                        <input type="text" name="UnitPrice" class="form-control" id="formcontrol2" placeholder="">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="formcontrol3" class="form-label">Adet</label>
+                        <input type="text" name="Piece" class="form-control" id="formcontrol3" placeholder="">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="formcontrol4" class="form-label">Toplam Fiyat</label>
+                        <input type="text" name="ItemsTotalPrice" class="form-control" id="formcontrol4" placeholder="">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="formcontrol5" class="form-label">Fatura Id</label>
+                        <input type="text" name="InvoiceId" class="form-control" id="formcontrol5" placeholder="">
+                    </div>
+                    <div class="col-12 mb-3 text-right">
+                        <button type="submit" class="btn btn-outline-success">Fatura Kalem Girişi Yap</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</form>
+
