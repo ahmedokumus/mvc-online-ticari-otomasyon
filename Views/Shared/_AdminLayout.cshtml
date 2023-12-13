@@ -291,10 +291,8 @@
                                 <p>Ana Menü</p>
                             </a>
                         </li>
-
                         @if (User.IsInRole("A"))
                         {
-
                             <li class="nav-item">
                                 <a href="@Url.Action("CategoryList", "Category")" class="nav-link">
                                     <i class="fas fa-circle nav-icon"></i>
@@ -564,10 +562,9 @@
                                 </a>
                             </li>
                         }
-                        <hr />
                         <li class="nav-item">
                             <a href="@Url.Action("LogOut", "Login")" class="nav-link">
-                                <i class="fas fa-sign-out"></i>
+                                <i class="fas fa-sign-out-alt"></i>
                                 <p>Çıkış Yap</p>
                             </a>
                         </li>

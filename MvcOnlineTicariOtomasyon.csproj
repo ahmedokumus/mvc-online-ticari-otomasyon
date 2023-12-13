@@ -2738,6 +2738,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ImagesOfTheProject\" />
     <Folder Include="Views\Message\" />
     <Folder Include="Views\Statistics\PartialViews\" />
   </ItemGroup>

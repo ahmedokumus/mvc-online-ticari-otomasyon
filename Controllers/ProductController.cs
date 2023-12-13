@@ -10,7 +10,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers;
 
 //[Authorize]
 [BreadCrumb(Manual = false)]
-[Authorize(Roles = "A")]
+[Authorize(Roles = "A,B")]
 public class ProductController : Controller
 {
     private readonly Context _context = new Context();
