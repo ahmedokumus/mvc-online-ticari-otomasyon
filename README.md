@@ -18,7 +18,7 @@ Destek için ahakanokumuss@gmail.com adresine e-posta gönderin veya Slack kanal
   
 ## Ekran Görüntüleri https://github.com/ahmedokumus/mvc-online-ticari-otomasyon/tree/master/ImagesOfTheProject
 
-![Uygulama Ekran Görüntüsü]![alt text](https://github.com/[ahmedokumus]/[mvc-online-ticari-otomasyon]/tree/[master]/ImagesOfTheProject/login.png?raw=true)
+![Uygulama Ekran Görüntüsü](ImagesOfTheProject/login.png)
 
   
 ## Kullanılan Teknolojiler
