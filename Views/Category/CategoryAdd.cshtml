@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "CategoryAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col text-center">
+                    <h2>Kategori Ekleme</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-12 mb-3">
+                    <label for="formcontrol1" class="form-label">Kategori Adı</label>
+                    <input type="text" name="CategoryName" class="form-control" id="formcontrol1" placeholder="">
+                </div>
+                <div class="col-12 mb-3 text-right">
+                    <button type="submit" class="btn btn-outline-success" id="btnAdd" style="width:100px">Ekle</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script src="~/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
+
+<script>
+    $('#btnAdd').click(function () {
+        swal("Kategori", "Kategori Başarıyla Eklendi", "success");
+    });
+</script>
+
+@*<div class="container mt-3">
+        <div class="row text-center mb-2">
+            <div class="col">
+                <h2>Kategori Ekleme</h2>
+            </div>
+        </div>
+        <div class="row text-start">
+            <form class="form-group" method="post">
+                <div class="col-12 mb-3">
+                    <label for="formcontrol1" class="form-label">Kategori Adı</label>
+                    <input type="text" name="CategoryName" class="form-control" id="formcontrol1" placeholder="">
+                </div>
+                <div class="col-12 mb-3 text-end">
+                    <button type="submit" class="btn btn-outline-success">Ekle</button>
+                </div>
+            </form>
+        </div>
+    </div>*@

@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:Server=(localdb):MSSQLLocalDB;Database=DbTicariOtomasyon;Trusted_Connection=True;"
+    },
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "ahmed-hakan-sqlserver.database.windows.net"
+    }
+  }
+}

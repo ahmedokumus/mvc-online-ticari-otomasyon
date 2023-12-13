@@ -1,0 +1,55 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.SalesMovement
+
+@{
+    ViewBag.Title = "SalesUpdate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    @Html.HiddenFor(x => x.SalesMovementId)
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col text-center">
+                    <h2>Satış Güncelleme</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <label for="formcontrol1" class="form-label">Satışı Yapılacak Ürün</label>
+                    <select name="ProductId" class="form-control" id="formcontrol1">
+                        @foreach (var product in (List<SelectListItem>)ViewBag.products)
+                        {
+                            <option value="@product.Value" @(product.Value == Model.ProductId.ToString() ? "selected" : "")>@product.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol2" class="form-label">Satış Yapan Personel</label>
+                    <select name="EmployeeId" class="form-control" id="formcontrol2">
+                        @foreach (var employee in (List<SelectListItem>)ViewBag.employees)
+                        {
+                            <option value="@employee.Value" @(employee.Value == Model.EmployeeId.ToString() ? "selected" : "")>@employee.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol3" class="form-label">Alan Müşteri</label>
+                    <select name="CustomerId" class="form-control" id="formcontrol3">
+                        @foreach (var customer in (List<SelectListItem>)ViewBag.customers)
+                        {
+                            <option value="@customer.Value" @(customer.Value == Model.CustomerId.ToString() ? "selected" : "")>@customer.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol5" class="form-label">Adet</label>
+                    <input type="text" value="@Model.Piece" name="Piece" class="form-control" id="formcontrol5" placeholder="">
+                </div>
+                <div class="col-12 mb-3 text-center">
+                    <button type="submit" class="btn btn-outline-warning">Güncelle</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

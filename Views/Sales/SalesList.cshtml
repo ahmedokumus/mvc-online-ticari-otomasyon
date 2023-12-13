@@ -1,0 +1,108 @@
+﻿@using MvcOnlineTicariOtomasyon.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<SalesMovement>
+
+@{
+    ViewBag.Title = "SalesList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <div class="row my-auto">
+                    <div class="col-4 text-start">
+                        <a href="@Url.Action("SalesAdd")" type="button" class="btn btn-info">Yeni Satış Yap</a>
+                    </div>
+                    <div class="col-4 text-center">
+                        <h2>Satış Listesi</h2>
+                    </div>
+                    <div class="col-4 text-end">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-hover" id="example">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Ürün Adı</th>
+                                    <th>Personel</th>
+                                    <th>Müşteri</th>
+                                    <th>Birim Fiyat</th>
+                                    <th>Adet</th>
+                                    <th>Toplam</th>
+                                    <th>Tarih</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.SalesMovementId</td>
+                                        <td>@item.Product.ProductName</td>
+                                        <td>@item.Employee.EmployeeFirstName @item.Employee.EmployeeLastName</td>
+                                        <td>@item.Customer.CustomerFirstName @item.Customer.CustomerLastName</td>
+                                        <td>@item.Price</td>
+                                        <td>@item.Piece</td>
+                                        <td>@item.TotalPrice</td>
+                                        <td>@item.Date</td>
+                                        <td><a href="@Url.Action("SalesDetail", "Sales", new { id = item.SalesMovementId })" class="btn btn-secondary btn-sm">Detay</a></td>
+                                        <td><a href="@Url.Action("SalesUpdate", "Sales", new { id = item.SalesMovementId })" class="btn btn-warning btn-sm">Güncelle</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0 float-right">
+                    @Html.PagedListPager(Model, page => Url.Action("SalesList", new { page }), new PagedListRenderOptions
+                    {
+                        LiElementClasses = new List<string> { "page-link" }
+                    })
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-1.13.5/b-2.4.1/b-colvis-2.4.1/b-html5-2.4.1/b-print-2.4.1/datatables.min.css" rel="stylesheet" />
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-1.13.5/b-2.4.1/b-colvis-2.4.1/b-html5-2.4.1/b-print-2.4.1/datatables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#example').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy',
+                'excel',
+                {
+                    extend: 'pdfHtml5',
+                    download: 'open',
+                    title: 'Satış Listesi',
+                    messageTop: ''
+                },
+                'print',
+                'colvis'
+            ],
+            responsive: true,
+            lengthMenu: [5, 10, 25, 50, 100],
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.5/i18n/tr.json',
+            },
+        });
+
+        table.buttons().container()
+            .appendTo('#example_wrapper .col-md-6:eq(0)');
+    });
+</script>

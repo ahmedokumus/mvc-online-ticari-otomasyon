@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "InvoiceAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col text-center">
+                    <h2>Fatura Giriş</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <label for="formcontrol1" class="form-label">Seri no</label>
+                    <input type="text" name="InvoiceSerialNumber" class="form-control" id="formcontrol1" placeholder="">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol2" class="form-label">Sıra no</label>
+                    <input type="text" name="InvoiceNumber" class="form-control" id="formcontrol2" placeholder="">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol3" class="form-label">Vergi Dairesi</label>
+                    <input type="text" name="TaxAdministration" class="form-control" id="formcontrol3" placeholder="">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol4" class="form-label">Toplam</label>
+                    <input type="text" name="TotalPrice" class="form-control" id="formcontrol4" placeholder="">
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol5" class="form-label">Teslim Eden Personel</label>
+                    <select name="DeliveryPerson" class="form-control" id="formcontrol5">
+                        @foreach (var employee in (List<SelectListItem>)ViewBag.employees)
+                        {
+                            <option value="@employee.Value">@employee.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="formcontrol6" class="form-label">Teslim Alan Müşteri</label>
+                    <select name="DeliveryArea" class="form-control" id="formcontrol6">
+                        @foreach (var customer in (List<SelectListItem>)ViewBag.customers)
+                        {
+                            <option value="@customer.Value">@customer.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-12 mb-3 text-center">
+                    <button type="submit" class="btn btn-outline-success">Fatura Girişi Yap</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
