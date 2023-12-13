@@ -17,8 +17,12 @@ Destek için ahakanokumuss@gmail.com adresine e-posta gönderin veya Slack kanal
 
   
 ## Ekran Görüntüleri
-
+login page
 ![Uygulama Ekran Görüntüsü](ImagesOfTheProject/login.png)
+home page
+![Uygulama Ekran Görüntüsü](ImagesOfTheProject/home.png)
+invoice page
+![Uygulama Ekran Görüntüsü](ImagesOfTheProject/invoicesList.png)
 
   
 ## Kullanılan Teknolojiler
