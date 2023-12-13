@@ -11,16 +11,21 @@ Projede açık kaynak templateler gerkli düzenlemeler yapılarak kullanılmış
 Projede bir çok noktada eksiklerim olabilir bu konuda
 
 Katkılara her zaman açığım!
-## Destek
-
-Destek için ahakanokumuss@gmail.com adresine e-posta gönderin veya Slack kanalımıza katılın.
-
   
 ## Ekran Görüntüleri
-
-![Uygulama Ekran Görüntüsü](https://photos.app.goo.gl/CzaiAAQrRzRvW7Fc6)
-
+login page
+![Uygulama Ekran Görüntüsü](ImagesOfTheProject/login.png)
+home page
+![Uygulama Ekran Görüntüsü](ImagesOfTheProject/home.png)
+invoice page
+![Uygulama Ekran Görüntüsü](ImagesOfTheProject/invoicesList.png)
+invoice add
+![Uygulama Ekran Görüntüsü](ImagesOfTheProject/newInvoice.png)
   
 ## Kullanılan Teknolojiler
 
 **Teknoloji:** Asp.Net MVC5
+
+## Destek
+
+Destek için ahakanokumuss@gmail.com adresine e-posta gönderin veya Slack kanalımıza katılın.
