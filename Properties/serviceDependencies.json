@@ -6,7 +6,8 @@
     },
     "mssql2": {
       "type": "mssql",
-      "connectionId": "ahmed-hakan-sqlserver.database.windows.net"
+      "connectionId": "ahmed-hakan-sqlserver.database.windows.net",
+      "dynamicId": null
     }
   }
 }

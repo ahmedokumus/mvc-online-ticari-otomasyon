@@ -247,12 +247,19 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="~/AdminLTE-3.2.0/dist/img/user2-160x160.jpg"
+                        <img src="@{ if (Session["employeeImg"] == null || (string)Session["employeeImg"] == "Test")
+                                      {
+                                          @Html.Raw("/AdminLTE-3.2.0/dist/img/user2-160x160.jpg")
+                                      }else
+                                      {
+                                          @Html.Raw(Session["employeeImg"])
+                                      }
+                                   }"
                              class="img-circle elevation-2"
                              alt="User Image" />
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Admin Adı</a>
+                        <a href="#" class="d-block"> @Session["employeeName"] </a>
                     </div>
                 </div>
 
@@ -279,140 +286,286 @@
                         data-accordion="false">
                         <li class="nav-header">ADMİN</li>
                         <li class="nav-item">
-                            <a href="@Url.Action("Index","Home")" class="nav-link">
+                            <a href="@Url.Action("Index", "Home")" class="nav-link">
                                 <i class="fas fa-circle nav-icon"></i>
                                 <p>Ana Menü</p>
                             </a>
                         </li>
+                        @if (User.IsInRole("A"))
+                        {
+                            <li class="nav-item">
+                                <a href="@Url.Action("CategoryList", "Category")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Kategori</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("ProductList", "Product")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Ürün</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("DepartmentList", "Department")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Departman</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("EmployeeList", "Employee")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Personel</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("CustomerList", "Customer")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Müşteri</p>
+                                </a>
+                            </li>
+                            <li class="nav-header">RAPOR & FATURA</li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("SalesList", "Sales")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Satış</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("InvoiceList", "Invoice")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Fatura</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("DynamicInvoiceList", "DynamicInvoices")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Dinamik Fatura</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-circle"></i>
+                                    <p>
+                                        İstatistikler
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("CardStatistics", "Statistics")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Cart İstatistik</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("SimpleStatistics", "Statistics")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Basit İstatistik</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                Grafikler
+                                                <i class="right fas fa-angle-left"></i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Graphic1", "Statistics")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon"></i>
+                                                    <p>Grafik 1</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Graphic2", "Statistics")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon"></i>
+                                                    <p>Grafik 2</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Graphic3", "Statistics")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon"></i>
+                                                    <p>Grafik 3</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Graphic4", "Statistics")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon"></i>
+                                                    <p>Grafik 4</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Graphic5", "Statistics")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon"></i>
+                                                    <p>Grafik 5</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("Index", "Gallery")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Galeri</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("CargoList", "Cargo")" class="nav-link">
+                                    <i class="fas fa-box nav-icon"></i>
+                                    <p>Kargo</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("Generator", "Qr")" class="nav-link">
+                                    <i class="fas fa-qrcode"></i>
+                                    <p>Qr Kod İşlemleri</p>
+                                </a>
+                            </li>
+                        }
+                        @if (User.IsInRole("B"))
+                        {
+                            <li class="nav-item">
+                                <a href="@Url.Action("CategoryList", "Category")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Kategori</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("ProductList", "Product")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Ürün</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("DepartmentList", "Department")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Departman</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("EmployeeList", "Employee")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Personel</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("CustomerList", "Customer")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Müşteri</p>
+                                </a>
+                            </li>
+                        }
+                        @if (User.IsInRole("C"))
+                        {
+                            <li class="nav-header">RAPOR & FATURA</li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("SalesList", "Sales")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Satış</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("InvoiceList", "Invoice")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Fatura</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("DynamicInvoiceList", "DynamicInvoices")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Dinamik Fatura</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-circle"></i>
+                                    <p>
+                                        İstatistikler
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("CardStatistics", "Statistics")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Cart İstatistik</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("SimpleStatistics", "Statistics")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Basit İstatistik</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>
+                                                Grafikler
+                                                <i class="right fas fa-angle-left"></i>
+                                            </p>
+                                        </a>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Graphic1", "Statistics")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon"></i>
+                                                    <p>Grafik 1</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Graphic2", "Statistics")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon"></i>
+                                                    <p>Grafik 2</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Graphic3", "Statistics")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon"></i>
+                                                    <p>Grafik 3</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Graphic4", "Statistics")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon"></i>
+                                                    <p>Grafik 4</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="@Url.Action("Graphic5", "Statistics")" class="nav-link">
+                                                    <i class="far fa-dot-circle nav-icon"></i>
+                                                    <p>Grafik 5</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("Index", "Gallery")" class="nav-link">
+                                    <i class="fas fa-circle nav-icon"></i>
+                                    <p>Galeri</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("CargoList", "Cargo")" class="nav-link">
+                                    <i class="fas fa-box nav-icon"></i>
+                                    <p>Kargo</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="@Url.Action("Generator", "Qr")" class="nav-link">
+                                    <i class="fas fa-qrcode"></i>
+                                    <p>Qr Kod İşlemleri</p>
+                                </a>
+                            </li>
+                        }
                         <li class="nav-item">
-                            <a href="@Url.Action("CategoryList","Category")" class="nav-link">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>Kategori</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("ProductList","Product")" class="nav-link">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>Ürün</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("DepartmentList","Department")" class="nav-link">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>Departman</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("EmployeeList","Employee")" class="nav-link">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>Personel</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("CustomerList","Customer")" class="nav-link">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>Müşteri</p>
-                            </a>
-                        </li>
-                        <li class="nav-header">RAPOR & FATURA</li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("SalesList","Sales")" class="nav-link">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>Satış</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("InvoiceList","Invoice")" class="nav-link">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>Fatura</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("DynamicInvoiceList","DynamicInvoices")" class="nav-link">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>Dinamik Fatura</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-circle"></i>
-                                <p>
-                                    İstatistikler
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("CardStatistics","Statistics")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Cart İstatistik</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("SimpleStatistics","Statistics")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Basit İstatistik</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Grafikler
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="@Url.Action("Graphic1","Statistics")" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Grafik 1</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="@Url.Action("Graphic2","Statistics")" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Grafik 2</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="@Url.Action("Graphic3","Statistics")" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Grafik 3</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="@Url.Action("Graphic4","Statistics")" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Grafik 4</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="@Url.Action("Graphic5","Statistics")" class="nav-link">
-                                                <i class="far fa-dot-circle nav-icon"></i>
-                                                <p>Grafik 5</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Index","Gallery")" class="nav-link">
-                                <i class="fas fa-circle nav-icon"></i>
-                                <p>Galeri</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("CargoList","Cargo")" class="nav-link">
-                                <i class="fas fa-box nav-icon"></i>
-                                <p>Kargo</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Generator","Qr")" class="nav-link">
-                                <i class="fas fa-qrcode"></i>
-                                <p>Qr Kod İşlemleri</p>
+                            <a href="@Url.Action("LogOut", "Login")" class="nav-link">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <p>Çıkış Yap</p>
                             </a>
                         </li>
                     </ul>

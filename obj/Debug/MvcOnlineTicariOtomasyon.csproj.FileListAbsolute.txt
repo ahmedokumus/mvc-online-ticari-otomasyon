@@ -89,7 +89,6 @@ C:\Users\ahmed\source\repos\MvcOnlineTicariOtomasyon\bin\System.Web.WebPages.Raz
 C:\Users\ahmed\source\repos\MvcOnlineTicariOtomasyon\bin\System.Web.Optimization.xml
 C:\Users\ahmed\source\repos\MvcOnlineTicariOtomasyon\obj\Debug\MvcOnlineTicariOtomasyon.csproj.AssemblyReference.cache
 C:\Users\ahmed\source\repos\MvcOnlineTicariOtomasyon\obj\Debug\MvcOnlineTicariOtomasyon.csproj.CoreCompileInputs.cache
-C:\Users\ahmed\source\repos\MvcOnlineTicariOtomasyon\obj\Debug\MvcOnlineTicariOtomasyon.csproj.CopyComplete
 C:\Users\ahmed\source\repos\MvcOnlineTicariOtomasyon\obj\Debug\MvcOnlineTicariOtomasyon.dll
 C:\Users\ahmed\source\repos\MvcOnlineTicariOtomasyon\obj\Debug\MvcOnlineTicariOtomasyon.pdb
 C:\Users\ahmed\source\repos\MvcOnlineTicariOtomasyon\bin\PagedList.dll
@@ -100,3 +99,4 @@ C:\Users\ahmed\source\repos\MvcOnlineTicariOtomasyon\obj\Debug\MvcOnlineTicariOt
 C:\Users\ahmed\source\repos\MvcOnlineTicariOtomasyon\obj\Debug\MvcOnlineTicariOtomasyon.csproj.GenerateResource.cache
 C:\Users\ahmed\source\repos\MvcOnlineTicariOtomasyon\bin\Newtonsoft.Json.xml
 C:\Users\ahmed\source\repos\MvcOnlineTicariOtomasyon\obj\Debug\MvcOnlineTicariOtomasyon.Migrations.messages.resources
+C:\Users\ahmed\source\repos\MvcOnlineTicariOtomasyon\obj\Debug\MvcOnlin.4E6695AF.Up2Date
